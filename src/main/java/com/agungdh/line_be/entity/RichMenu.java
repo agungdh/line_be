@@ -19,7 +19,6 @@ public class RichMenu {
     private Long id;
     private String richMenuId;
     @OneToOne
-    @JoinColumn(name = "size_id")
     private RichMenuSize size;
     private boolean selected;
     private String name;

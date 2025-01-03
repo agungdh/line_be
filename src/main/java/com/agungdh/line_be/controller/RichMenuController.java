@@ -25,7 +25,7 @@ public class RichMenuController {
         RichMenu richMenu = new RichMenu();
 //        richMenu.setTitle(richMenuCreateRequest.title());
 //        richMenu.setDescription(richMenuCreateRequest.description());
-        richMenu.setCreatedAt(Instant.now());
+//        richMenu.setCreatedAt(Instant.now());
         return richMenuService.save(richMenu);
     }
 
