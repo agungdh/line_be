@@ -1,6 +1,8 @@
 package com.agungdh.line_be.dto;
 
 public record RichMenuCreateRequest (
-        String title,
-        String description
+        RichMenuSize size,
+        boolean selected,
+        String name,
+        String chatBarText
 ) { }
