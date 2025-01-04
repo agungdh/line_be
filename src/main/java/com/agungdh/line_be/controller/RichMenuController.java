@@ -1,6 +1,7 @@
 package com.agungdh.line_be.controller;
 
 import com.agungdh.line_be.dto.RichMenuCreateRequest;
+import com.agungdh.line_be.dto.RichMenuCreateResponse;
 import com.agungdh.line_be.entity.RichMenu;
 import com.agungdh.line_be.entity.RichMenuSize;
 import com.agungdh.line_be.service.RichMenuService;
@@ -22,7 +23,7 @@ public class RichMenuController {
     }
 
     @PostMapping
-    public RichMenu save(@RequestBody RichMenuCreateRequest richMenuCreateRequest) {
+    public RichMenuCreateResponse save(@RequestBody RichMenuCreateRequest richMenuCreateRequest) {
         return richMenuService.create(richMenuCreateRequest);
     }
 

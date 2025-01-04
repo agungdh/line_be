@@ -1,6 +1,8 @@
 package com.agungdh.line_be.service;
 
 import com.agungdh.line_be.dto.RichMenuCreateRequest;
+import com.agungdh.line_be.dto.RichMenuCreateResponse;
+import com.agungdh.line_be.dto.RichMenuSizeDTO;
 import com.agungdh.line_be.entity.RichMenu;
 import com.agungdh.line_be.entity.RichMenuSize;
 import com.agungdh.line_be.repository.RichMenuRepository;
@@ -23,7 +25,7 @@ public class RichMenuService {
     }
 
     @Transactional
-    public RichMenu create(RichMenuCreateRequest richMenuCreateRequest) {
+    public RichMenuCreateResponse create(RichMenuCreateRequest richMenuCreateRequest) {
         RichMenuSize richMenuSize = new RichMenuSize();
         richMenuSize.setWidth(richMenuCreateRequest.size().width());
         richMenuSize.setHeight(richMenuCreateRequest.size().height());
@@ -36,7 +38,21 @@ public class RichMenuService {
         richMenu.setChatBarText(richMenuCreateRequest.chatBarText());
         richMenu.setCreatedAt(Instant.now());
 
-        return richMenuRepository.save(richMenu);
+        richMenuRepository.save(richMenu);
+
+        return new RichMenuCreateResponse(
+                richMenu.getId(),
+                richMenu.getRichMenuId(),
+                new RichMenuSizeDTO(
+                        richMenu.getSize().getWidth(),
+                        richMenu.getSize().getHeight()
+                ),
+                richMenu.isSelected(),
+                richMenu.getName(),
+                richMenu.getChatBarText(),
+                richMenu.getCreatedAt(),
+                richMenu.getLastSyncedAt()
+        );
     }
 
     public RichMenu findById(Long id) {
